@@ -1,0 +1,54 @@
+远程库在github上早已建好，但是又有几个本地文件需要提交上去，但是不需要下载远程库里的文件。
+
+1、
+在本地目录下，
+git init .
+git status       //显示在master分支，但是远程库上没有master分支，只有main分支
+git remote add origin git@github.com:HashFarmer/learn_javascript.git // 在本地把git@github.com:HashFarmer/learn_javascript.git标记为origin
+git add . 
+git commit -m "some_updates"
+
+git push -u origin main //失败是因为 本地分支名为master，远程分支名为main
+git push -u origin master //成功是因为在远程库上自动创建了master分支
+
+git branch main //本地新建main分支
+git checkout main //切换到main分支
+git status //显示 “无文件需要提交，干净的工作区”
+git merge master // 显示“Already up-to-date.”
+
+
+在main分支，把文件全部修改一遍，然后
+git add .
+git commit -m "just_to_modify"
+git push -u origin main //
+//
+To git@github.com:HashFarmer/learn_javascript.git
+ ! [rejected]        main -> main (fetch first)
+error: 无法推送一些引用到 'git@github.com:HashFarmer/learn_javascript.git'
+提示：更新被拒绝，因为远程仓库包含您本地尚不存在的提交。这通常是因为另外
+提示：一个仓库已向该引用进行了推送。再次推送前，您可能需要先整合远程变更
+提示：（如 'git pull ...'）。
+提示：详见 'git push --help' 中的 'Note about fast-forwards' 小节。
+//
+
+git pull
+//
+remote: Enumerating objects: 50, done.
+remote: Counting objects: 100% (50/50), done.
+remote: Compressing objects: 100% (45/45), done.
+remote: Total 50 (delta 19), reused 0 (delta 0), pack-reused 0
+展开对象中: 100% (50/50), 完成.
+来自 github.com:HashFarmer/learn_javascript
+ * [新分支]          main       -> origin/main
+当前分支没有跟踪信息。
+请指定您要合并哪一个分支。
+详见 git-pull(1)。
+
+    git pull <remote> <branch>
+
+如果您想要为此分支创建跟踪信息，您可以执行：
+
+    git branch --set-upstream-to=origin/<branch> main
+//
+
+
